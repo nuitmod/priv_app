@@ -1,0 +1,9 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+input, button{
+  color: lightgray;
+  background-color: black;
+  justify-content: center;
+}
