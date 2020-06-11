@@ -6,12 +6,12 @@ input, button{
   color: lightgray;
   background-color: black;
   justify-content: center;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 form{
   position: absolute;
-  right: 80px;
+  right: 20px;
   top: 20px;
 
 }

@@ -57,8 +57,8 @@ return html`
       <label>job</label>
       <input type="text" id="job" onchange=${handle_change_job} value=${temp_store.job} />
       </h6>
-      <input type="button" value=" add " onclick=${handle_submit}/>
-      <input type="button" value=" del " />
+      <input type="button" value="add" onclick=${handle_submit}/>
+      <input type="button" value="del" />
     </form>
   </div>`
 }
