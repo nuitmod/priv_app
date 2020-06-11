@@ -3,13 +3,14 @@ import { decorate, observable, computed, action } from '../modules/mobx.module.j
 
 var imob={
   inf: "imob",
+//  status: '',
   ch_store: ()=>{
     imob.inf="Ruth"; console.log(imob.inf);
     },
   data: [
-    { name: 'Maud', id: 1},
-    { name: 'Ruth', id: 2},
-    { name: 'Muit', id: 3}
+    { name: 'Maud', job: 'security', status: '', id: 1},
+    { name: 'Ruth', job: 'programmer', status: '', id: 2},
+    { name: 'Muit',job: 'contacter', status: '', id: 3}
   ],
   del_w: id=>{
     imob.data=imob.data.filter(wm=>{
@@ -21,6 +22,7 @@ var imob={
 
 decorate(imob, {
     inf: observable,
+//    status: observable,
     data: observable,
     ch_store: action,
     del_w: action

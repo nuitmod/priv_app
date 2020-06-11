@@ -6,4 +6,12 @@ input, button{
   color: lightgray;
   background-color: black;
   justify-content: center;
+  margin-right: 10px;
+}
+
+form{
+  position: absolute;
+  right: 80px;
+  top: 20px;
+
 }
