@@ -9,9 +9,54 @@ input, button{
   margin-right: 5px;
 }
 
-form{
+.header{
+  height: 15px;
+  width: 100%;
+  background: #000;
+}
+.footer{
+  height: 15px;
+  width: 100%;
+  background: #000;
   position: absolute;
-  right: 20px;
-  top: 20px;
+  bottom: 0;
+}
+/*left aria*/
+.l_cont{
+  height: 900px;
+  margin: 0px;
+  width: 150px;
+  background-color: lightgray;
+}
+.l_cont .list{
+  padding: 5px;
+  font-weight: 900;
+}
+.l_cont .list:hover{
+  font-weight: bolder;
+  opacity: 0.8;
+  background: ghostwhite;
+}
+.l_cont .list:active{
+  opacity: 0.8;
+  background: purple;
+}
 
+
+/*right area */
+.r_cont{
+  height: 100%;
+  position: absolute;
+  top: 15px;
+  bottom: 15px;
+  right: 29px;
+  background: ghostwhite;
+}
+
+#form_1{
+  padding: 10px;
+}
+#form_2{
+  padding: 10px;
+  background: lightgray;
 }

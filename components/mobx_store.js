@@ -8,16 +8,18 @@ var imob={
     imob.inf="Ruth"; console.log(imob.inf);
     },
   data: [
-    { name: 'Maud', job: 'security', status: '', id: 1},
-    { name: 'Ruth', job: 'programmer', status: '', id: 2},
-    { name: 'Muit',job: 'contacter', status: '', id: 3}
-  ],
+    { name: 'Maud', job: 'security', active: false, id: 1},
+    { name: 'Ruth', job: 'programmer', active: false, id: 2},
+    { name: 'Muit',job: 'contacter', active: false, id: 3}
+  ]
+  /*
   del_w: id=>{
     imob.data=imob.data.filter(wm=>{
       return wm.id != id
     });
     console.log(imob.data.map(i=>i.name));
   }
+  */
 }
 
 decorate(imob, {
