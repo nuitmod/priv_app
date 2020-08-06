@@ -62,7 +62,6 @@ var set_active=w=>{
   w.active=true;
   console.log(w.active);
   console.log(w.id);
-
   if(imob.data.length != 0){
     $$('#form_2').hide();
     console.log("sa_s");
@@ -73,15 +72,6 @@ var clear_temp=()=>{
 //  temp_store.name = null
 //  temp_store.job = null
 }
-
-var header_div=html`
-  <div class="header">
-  </div>
-`
-var footer_div=html`
-  <div class="footer">
-  </div>
-`
 
 var Uu = function(){
 
@@ -126,15 +116,13 @@ var Uu = function(){
 
 //all data
 return html`
-  ${header_div}
   <div class="l_cont">
     <h6>${wm_list}</h6>
   </div>
   <div class="r_cont">
     <p>${reg_form1}</p>
     <p>${reg_form2}</p>
-  </div>
-  ${footer_div}`
+  </div>`
 }
 
 
