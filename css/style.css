@@ -7,6 +7,7 @@ input, button{
   background-color: black;
   justify-content: center;
   margin-right: 5px;
+  border: 0;
 }
 
 .header{
@@ -23,7 +24,7 @@ input, button{
 }
 /*left aria*/
 .l_cont{
-  height: 1000px;
+  height: 500px;
   margin: 0px;
   width: 539px;
   background-color: rgba(0,0,0,0.9)
@@ -36,14 +37,16 @@ input, button{
 .l_cont .list:hover{
   color: black;
   font-weight: bolder;
-
   background: #F9F7F1;
 }
 .l_cont .list:active{
   opacity: 0.8;
   background: purple;
 }
-
+.l_cont .list:active::after{
+  opacity: 0.8;
+  background: pink;
+}
 
 /*right area */
 .r_cont{
