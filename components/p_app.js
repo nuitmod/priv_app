@@ -35,7 +35,7 @@ var handle_submit=e=>{
   if(temp_store.name != '' && temp_store.job != ''){
     add_w(temp_store)
   }else{
-    alert("Fields name and job must be input")
+    alert("Fields name and job must be input");
   }
 }
 
@@ -43,7 +43,6 @@ var add_w=wm=>{
   console.log(wm);          //wm=new temp_store
     wm.id=Math.random();
     wm.active=false
-//    if()
     imob.data.push(wm);
     wm.name = '';
     wm.job = '';
@@ -79,8 +78,7 @@ var Uu = function(){
   //show wm_list
   var wm_list=imob.data.map(wm=>html`
     <div class="list" key=${wm.id} onclick=${()=>set_active(wm)}>
-      <div>name: ${wm.name} </div>
-      <div>job: ${wm.job} </div>
+      <div>name: ${wm.name}  job: ${wm.job} </div>
    </div>`
   )
 
@@ -105,9 +103,9 @@ var Uu = function(){
           <h5>Registration form 2:</h5>
           <h6>
           <label>name</label>
-          <input type="text" id="name" placeholder="input name" onchange=${handle_change_name} value=${temp_store.name} /><br />
+          <input type="text" id="name" placeholder="name" onchange=${handle_change_name} value=${temp_store.name} /><br />
           <label>job</label>
-          <input type="text" id="job" placeholder="input job" onchange=${handle_change_job} value=${temp_store.job} />
+          <input type="text" id="job" placeholder="job" onchange=${handle_change_job} value=${temp_store.job} />
           </h6>
           <input type="button" value="add" onclick=${handle_submit}/>
           <input type="button" value="del" onclick=${clear_temp} />

@@ -10,7 +10,7 @@ input, button{
 }
 
 .header{
-  height: 15px;
+  height: 19px;
   width: 100%;
   background: #000;
 }
@@ -23,19 +23,21 @@ input, button{
 }
 /*left aria*/
 .l_cont{
-  height: 900px;
+  height: 1000px;
   margin: 0px;
-  width: 190px;
-  background-color: lightgray;
+  width: 539px;
+  background-color: rgba(0,0,0,0.9)
 }
 .l_cont .list{
+  color: #F9F7F1;
   padding: 5px;
   font-weight: 900;
 }
 .l_cont .list:hover{
+  color: black;
   font-weight: bolder;
-  opacity: 0.8;
-  background: ghostwhite;
+
+  background: #F9F7F1;
 }
 .l_cont .list:active{
   opacity: 0.8;
@@ -50,7 +52,7 @@ input, button{
   top: 15px;
   bottom: 15px;
   right: 9px;
-  background: ghostwhite;
+  background: white;
 }
 
 #form_1{
@@ -58,5 +60,5 @@ input, button{
 }
 #form_2{
   padding: 10px;
-  background: lightgray;
+  background: #F9F7F1;
 }

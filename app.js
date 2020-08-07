@@ -6,7 +6,6 @@ function App(){ return html`
   <div class=app>
     <${header_div} />
     <${Uu} />
-    <${footer_div} />
   </div>`
 }
 
