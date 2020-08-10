@@ -24,9 +24,9 @@ input, button{
 }
 /*left aria*/
 .l_cont{
-  height: 500px;
+  height: 900px;
   margin: 0px;
-  width: 539px;
+  width: 339px;
   background-color: rgba(0,0,0,0.9)
 }
 .l_cont .list{
@@ -50,9 +50,9 @@ input, button{
 
 /*right area */
 .r_cont{
-  height: 100%;
+  height: 900px;
   position: absolute;
-  top: 15px;
+  top: 19px;
   bottom: 15px;
   right: 9px;
   background: white;
