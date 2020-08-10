@@ -58,18 +58,20 @@ var handle_submit=e=>{
 }
 
 var add_w=wm=>{
-  console.log(wm.id);
   console.log(wm);        //wm=new temp_store
   imob.id_del != 0 ? wm.id=Math.random() : wm.id=imob.id_del
+  wm.id === 0 ? wm.id=Math.random() : null
   wm.active=false
-
+//  wm.id=999;
+//wm.id=Math.random();
+  console.log("wm id " + wm.id);
 //  imob.data.push(wm);
   console.log("2 index is " + imob.index);
   imob.index != null ? imob.data.splice(imob.index, 1, wm) : imob.data.push(wm);
   imob.index = null
   wm.name = '';
   wm.job = '';
-  console.log(wm.id);
+//  console.log(wm.id);
   delete_exist(imob.id_del);
   console.log("id for del " + imob.id_del);
 }
@@ -100,6 +102,7 @@ var set_active=w=>{
   imob.id_del=w.id;
   console.log("id for del " + imob.id_del);
   imob.index = __.findIndex(imob.data, {id: w.id});
+  //var _index_dat=imob.data.indexof(w.id); console.log(_index_dat);
   imob.index >= 0 ? console.log("index = " + imob.index) : console.log("less zero");
   //toJS(w).css({background: 'pink'})
   if(imob.data.length != 0){
