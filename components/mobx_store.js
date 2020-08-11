@@ -40,9 +40,9 @@ var imob={
   back: ()=>{
     local.clear();
     imob.data= [
-      { name: 'Maud', job: 'security', active: false, id: 1},
-      { name: 'Ruth', job: 'programmer', active: false, id: 2},
-      { name: 'Muit',job: 'contacter', active: false, id: 3}
+      { name: 'Maud', job: 'security', active: false, checked: false, id: 1},
+      { name: 'Ruth', job: 'programmer', active: false, checked: false, id: 2},
+      { name: 'Muit',job: 'contacter', active: false, checked: false, id: 3}
     ];
     imob.save_st();
   },

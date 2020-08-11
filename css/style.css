@@ -10,6 +10,13 @@ input, button{
   border: 0;
 }
 
+button .unactive{
+  background-color: rgba(0,0,0,0.8)
+}
+label{
+  color: black;
+  
+}
 .header{
   height: 19px;
   width: 100%;
@@ -24,9 +31,9 @@ input, button{
 }
 /*left aria*/
 .l_cont{
-  height: 900px;
+  height: 1000px;
   margin: 0px;
-  width: 339px;
+  width: 238px;
   background-color: rgba(0,0,0,0.9)
 }
 .l_cont .list{
@@ -50,7 +57,8 @@ input, button{
 
 /*right area */
 .r_cont{
-  height: 900px;
+  height: 1000px;
+  width: 238px;
   position: absolute;
   top: 19px;
   bottom: 15px;
