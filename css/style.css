@@ -10,12 +10,12 @@ input, button{
   border: 0;
 }
 
-button .unactive{
-  background-color: rgba(0,0,0,0.8)
+.unactive{
+  opacity: 0.5
 }
 label{
   color: black;
-  
+
 }
 .header{
   height: 19px;
@@ -64,6 +64,7 @@ label{
   bottom: 15px;
   right: 9px;
   background: white;
+  border: 2px;
 }
 
 #form_1{

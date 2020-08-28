@@ -4,94 +4,112 @@ import { useState, useReducer, useContext, useCallback} from "../modules/preact_
 import { observer } from '../modules/mobx_preact.module.js';
 import { get, set, values, toJS } from '../modules/mobx.module.js';
 import { autorun } from '../modules/mobx.module.js';
-import  * as $ from "https://unpkg.com/jquery@3.3.1/dist/jquery.min.js";
+import  * as jQuery from "https://unpkg.com/jquery@3.3.1/dist/jquery.min.js";
 import  * as _ from "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.19/lodash.min.js";
 //import { decorate, observable, computed, action } from '../modules/mobx.module.js';
 
-var $$ = window.$;
+var $ = window.jQuery;
 var __ = window._;
+
+$('#form_1').hide();
+imob.data.forEach(wm=>wm.active=false)
 
 var temp_store={
   name: '',
   job: '',
+  active: true,
+  radio_check: false,
   checked: false,
-  active: true
+  birth_date: null
+}
+
+var clear_temp=()=>{
+  temp_store.name = ''
+  temp_store.job = ''
+  temp_store.birth_date=null;
+  temp_store.radio_check=false;
+  temp_store.checked=false
 }
 
 var handle_change_name=e=>{
-  temp_store.name=e.target.value
+//  console.log(imob.data);
+  temp_store.name=e.target.value;
 //   [e.target.id]: e.target.value
+//  $('#form_2').hide();
 }
 
 var handle_change_job=e=>{
-  temp_store.job=e.target.value
-//  console.log(e.target.value);
+  temp_store.job=e.target.value;
+//  console.log("handle_change_job "+ e.target.value);
 }
 
 var handle_check=e=>{
   e.preventDefault()
 //  let checked=!temp_store.checked
   temp_store.checked=e.target.checked
-//  var value = e.target.name === 'checked' ? e.target.checked : e.target.value
-//  var name = e.target.name
 }
 
 var handle_submit=e=>{
   e.preventDefault();
-  temp_store.name != ''/* && temp_store.job != '' */? add_w(temp_store) : alert("Fields must not be empty");
+  console.log(e);
+  temp_store.name !=''  && temp_store.job != '' ? add_w(temp_store) : alert("Fields must not be empty");
+//  $('#form_2').hide();
 }
 
 var add_w=wm=>{
-  console.log(wm);        //wm=new temp_store
+//  console.log("new temp_store " + wm);        //wm=new temp_store
   imob.id_del != 0 ? wm.id=Math.random() : wm.id=imob.id_del
   wm.id === 0 ? wm.id=Math.random() : null
   wm.active=false
-//  console.log("wm id " + wm.id);
-//  imob.data.push(wm);
-//  console.log("2 index is " + imob.index);
   imob.index != null ? imob.data.splice(imob.index, 1, wm) : imob.data.push(wm);
   imob.index = null
   wm.name = '';
   wm.job = '';
   del_w(imob.id_del)
-//  console.log("id for del " + imob.id_del);
 }
 
 var del_w=id=>{
   imob.data=imob.data.filter(wm=>{
     return wm.id != id
   });
-  $$('#form_2').show();
-//  console.log(imob.data.map(i=>i.name));
-//  console.log(id);
+  $('#form_2').show();
   imob.index = null
+  clear_temp()
 }
 
 
 var set_active=w=>{
   imob.data.forEach(wm=>wm.active=false)
   w.active=true;
-  console.log("checked " + w.checked);
+//  console.log("checked " + w.checked);
   imob.id_del=w.id;
-//  console.log("id for del " + imob.id_del);
   imob.index = __.findIndex(imob.data, {id: w.id});
   //var _index_dat=imob.data.indexof(w.id); console.log(_index_dat);
   imob.index >= 0 ? console.log("index = " + imob.index) : console.log("less zero");
-  //toJS(w).css({background: 'pink'})
   if(imob.data.length != 0){
-    $$('#form_2').hide();
-//    console.log("sa_s");
+    $('#form_2').hide();
   }
+  temp_store.name=w.name;
+  temp_store.job=w.job;
+  temp_store.birth_date=w.birth_date;
+  temp_store.radio_check=w.radio_check;
+  temp_store.checked=w.checked;
+  console.log(w.birth_date);
 }
 
-var clear_temp=()=>{
-//  temp_store.name = null
-//  temp_store.job = null
+var gender_change=e=>{
+  //console.log(e.target);
+  temp_store.radio_check= e.target.checked
+  console.log(temp_store.radio_check);
 }
+
+var set_data=e=>{
+  console.log(e.target.value);
+  temp_store.birth_date=e.target.value;
+}
+
 
 var Uu = function(){
-
-//console.log("imob length = " + imob.data.length);
   //show wm_list
   var wm_list=imob.data.map(wm=>html`
     <div class="list" key=${wm.id} onclick=${()=>set_active(wm)}>
@@ -99,7 +117,7 @@ var Uu = function(){
    </div>`
  )
 
-  var reg_form1=imob.data.filter(wm=>wm.active!=false).map(wm=>html`
+  var reg_form1=imob.data.filter(wm=>wm.active===true).map(wm=>html`
      <div>
        <form id="form_1" onsubmit=${handle_submit}>
           <h5>Registration form:</h5>
@@ -107,19 +125,34 @@ var Uu = function(){
           <label>name</label>
           <input type="text" id="name" onchange=${handle_change_name} value=${wm.name} /><br />
           <label>job</label>
-          <select  id="job" onchange=${handle_change_job} value=${wm.job}>
+          <select  id="job" onchange=${handle_change_job}>
            <option value="programmer">Programmer</option>
            <option value="security">Security</option>
            <option value="contacter">Contacter</option>
           </select>
+          <div>
+            <label>
+              Date of birth: <input type="date" name="calendar" onchange=${set_data} value=${wm.birth_date}/>
+            </label>
+          </div>
+          <div class="gender">
+          gender:${'  '}
           <label>
-            <p>is empty:</p>
+            w: <input onchange=${handle_check} type="radio" checked=${temp_store.radio_check}  onchange=${gender_change} />
+          </label>
+          <label>
+            m: <input onchange=${handle_check} type="radio" checked=${temp_store.radio_check}  onchange=${gender_change} />
+          </label>
+          </div>
+          <div>
+          <label>
+            is empty:
             <input onchange=${handle_check} type="checkbox" checked=${wm.checked} />
           </label>
+            </div>
           </h6>
           <button type="button" onclick=${handle_submit}>add</button>
           <button type="button" onclick=${()=>del_w(wm.id)}>del</button>
-          <button onclick=${imob.save_st}>save</button>
        </form>
       </div>`)
 
@@ -136,15 +169,28 @@ var Uu = function(){
            <option value="security">Security</option>
            <option value="contacter">Contacter</option>
           </select>
-          <select value=${['Б', 'В']}>a</select>
+          <div>
+            <label>
+              Date of birth: <input type="date" name="calendar" onchange=${set_data} value=${temp_store.birth_date} />
+            </label>
+          </div>
+          <div class="gender">
+          gender:${'  '}
           <label>
-            <p>is empty:</p>
-            <input onchange=${handle_check} type="checkbox" checked=${temp_store.checked} />
+            w: <input onchange=${handle_check} type="radio" checked=${temp_store.radio_check}  onchange=${gender_change} />
           </label>
+          <label>
+            m: <input onchange=${handle_check} type="radio" checked=${temp_store.radio_check}  onchange=${gender_change} />
+          </label>
+          </div>
+          <div>
+            <label>
+              is empty: <input onchange=${handle_check} type="checkbox" checked=${temp_store.checked} />
+            </label>
+          </div>
           </h6>
-          <button onclick=${handle_submit}>add</button>
-          <button class="unactive" onclick=${clear_temp}>del</button>
-          <button onclick=${imob.save_st}>save</button>
+          <button class="" onclick=${handle_submit}>add</button>
+          <button class="unactive" onclick=${clear_temp} disabled >del</button>
        </form>
       </div>`
 
