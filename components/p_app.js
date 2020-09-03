@@ -12,40 +12,35 @@ var $ = window.jQuery;
 var __ = window._;
 
 $('#form_1').hide();
-imob.data.forEach(wm=>wm.active=false)
+imob.data.forEach(wm=>wm.active===true ? wm.active=false : null)
 
 var temp_store={
   name: '',
   job: '',
+  birth_date: null,
   active: true,
-  radio_check: false,
-  checked: false,
-  birth_date: null
+  gender: 'w',
+  checked: false
 }
 
 var clear_temp=()=>{
   temp_store.name = ''
   temp_store.job = ''
-  temp_store.birth_date=null;
-  temp_store.radio_check=false;
+  temp_store.birth_date=null
+  temp_store.gender= 'w'
   temp_store.checked=false
 }
 
 var handle_change_name=e=>{
-//  console.log(imob.data);
   temp_store.name=e.target.value;
-//   [e.target.id]: e.target.value
-//  $('#form_2').hide();
 }
 
 var handle_change_job=e=>{
   temp_store.job=e.target.value;
-//  console.log("handle_change_job "+ e.target.value);
 }
 
 var handle_check=e=>{
   e.preventDefault()
-//  let checked=!temp_store.checked
   temp_store.checked=e.target.checked
 }
 
@@ -77,9 +72,16 @@ var del_w=id=>{
   clear_temp()
 }
 
+var temp_no_change=par=>{
+  temp_store.name=par.name;
+  temp_store.job=par.job;
+  temp_store.birth_date=par.birth_date;
+  temp_store.gender=par.gender;
+  temp_store.checked=par.checked;
+}
 
 var set_active=w=>{
-  imob.data.forEach(wm=>wm.active=false)
+  imob.data.forEach(wm=>wm.active===true ? wm.active=false : null)
   w.active=true;
 //  console.log("checked " + w.checked);
   imob.id_del=w.id;
@@ -89,22 +91,23 @@ var set_active=w=>{
   if(imob.data.length != 0){
     $('#form_2').hide();
   }
+  temp_no_change(w);
+  /*
   temp_store.name=w.name;
   temp_store.job=w.job;
   temp_store.birth_date=w.birth_date;
-  temp_store.radio_check=w.radio_check;
-  temp_store.checked=w.checked;
-  console.log(w.birth_date);
+  temp_store.gender=w.gender;
+  temp_store.checked=w.checked;*/
 }
 
 var gender_change=e=>{
   //console.log(e.target);
-  temp_store.radio_check= e.target.checked
-  console.log(temp_store.radio_check);
+  temp_store.gender= e.target.value;
+//  console.log(temp_store.gender);
 }
 
 var set_data=e=>{
-  console.log(e.target.value);
+//  console.log(e.target.value);
   temp_store.birth_date=e.target.value;
 }
 
@@ -125,7 +128,7 @@ var Uu = function(){
           <label>name</label>
           <input type="text" id="name" onchange=${handle_change_name} value=${wm.name} /><br />
           <label>job</label>
-          <select  id="job" onchange=${handle_change_job}>
+          <select  id="job" onchange=${handle_change_job} value=${wm.job}>
            <option value="programmer">Programmer</option>
            <option value="security">Security</option>
            <option value="contacter">Contacter</option>
@@ -138,10 +141,20 @@ var Uu = function(){
           <div class="gender">
           gender:${'  '}
           <label>
-            w: <input onchange=${handle_check} type="radio" checked=${temp_store.radio_check}  onchange=${gender_change} />
+            w: <input onchange=${handle_check}
+                      name="gender"
+                      value='w'
+                      type="radio"
+                      checked=${wm.gender === 'w'}
+                      onchange=${gender_change} />
           </label>
           <label>
-            m: <input onchange=${handle_check} type="radio" checked=${temp_store.radio_check}  onchange=${gender_change} />
+            m: <input onchange=${handle_check}
+                      name="gender"
+                      value='m'
+                      type="radio"
+                      checked=${wm.gender === 'm'}
+                      onchange=${gender_change} />
           </label>
           </div>
           <div>
@@ -177,10 +190,20 @@ var Uu = function(){
           <div class="gender">
           gender:${'  '}
           <label>
-            w: <input onchange=${handle_check} type="radio" checked=${temp_store.radio_check}  onchange=${gender_change} />
+            w: <input onchange=${handle_check}
+                      name="gender"
+                      value='w'
+                      type="radio"
+                      checked=${temp_store.gender === 'w'}
+                      onchange=${gender_change} />
           </label>
           <label>
-            m: <input onchange=${handle_check} type="radio" checked=${temp_store.radio_check}  onchange=${gender_change} />
+            m: <input onchange=${handle_check}
+                      name="gender"
+                      value='m'
+                      type="radio"
+                      checked=${temp_store.gender === 'm'}
+                      onchange=${gender_change} />
           </label>
           </div>
           <div>
@@ -203,7 +226,10 @@ return html`
     <p>${reg_form1}</p>
     <p>${reg_form2}</p>
     <button onclick=${imob.save_st}>save</button>
-    <button onclick=${imob.back}>back</button>
+    <button onclick=${()=>{
+      clear_temp();
+      imob.back();
+    }}>back</button>
     <button onclick=${imob.clear_all}>clear_all</button>
     <p>index : ${imob.index}</p>
   </div>`
