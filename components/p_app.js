@@ -8,13 +8,12 @@ import  * as jQuery from "https://unpkg.com/jquery@3.3.1/dist/jquery.min.js";
 import  * as _ from "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.19/lodash.min.js";
 //import { decorate, observable, computed, action } from '../modules/mobx.module.js';
 
-var $ = window.jQuery;
-var __ = window._;
+let __ = window._;
 
 $('#form_1').hide();
 imob.data.forEach(wm=>wm.active===true ? wm.active=false : null)
 
-var temp_store={
+let temp_store={
   name: '',
   job: '',
   birth_date: null,
@@ -23,7 +22,7 @@ var temp_store={
   checked: false
 }
 
-var clear_temp=()=>{
+let clear_temp=()=>{
   temp_store.name = ''
   temp_store.job = ''
   temp_store.birth_date=null
@@ -31,27 +30,27 @@ var clear_temp=()=>{
   temp_store.checked=false
 }
 
-var handle_change_name=e=>{
+let handle_change_name=e=>{
   temp_store.name=e.target.value;
 }
 
-var handle_change_job=e=>{
+let handle_change_job=e=>{
   temp_store.job=e.target.value;
 }
 
-var handle_check=e=>{
+let handle_check=e=>{
   e.preventDefault()
   temp_store.checked=e.target.checked
 }
 
-var handle_submit=e=>{
+let handle_submit=e=>{
   e.preventDefault();
   console.log(e);
   temp_store.name !=''  && temp_store.job != '' ? add_w(temp_store) : alert("Fields must not be empty");
 //  $('#form_2').hide();
 }
 
-var add_w=wm=>{
+let add_w=wm=>{
 //  console.log("new temp_store " + wm);        //wm=new temp_store
   imob.id_del != 0 ? wm.id=Math.random() : wm.id=imob.id_del
   wm.id === 0 ? wm.id=Math.random() : null
@@ -61,9 +60,11 @@ var add_w=wm=>{
   wm.name = '';
   wm.job = '';
   del_w(imob.id_del)
+  imob.is_change=true;
+  //console.log(imob.is_change)
 }
 
-var del_w=id=>{
+let del_w=id=>{
   imob.data=imob.data.filter(wm=>{
     return wm.id != id
   });
@@ -72,7 +73,7 @@ var del_w=id=>{
   clear_temp()
 }
 
-var temp_no_change=par=>{
+let temp_no_change=par=>{
   temp_store.name=par.name;
   temp_store.job=par.job;
   temp_store.birth_date=par.birth_date;
@@ -80,68 +81,63 @@ var temp_no_change=par=>{
   temp_store.checked=par.checked;
 }
 
-var set_active=w=>{
+let set_active=w=>{
   imob.data.forEach(wm=>wm.active===true ? wm.active=false : null)
-  w.active=true;
-//  console.log("checked " + w.checked);
+  w.active=true;;
   imob.id_del=w.id;
   imob.index = __.findIndex(imob.data, {id: w.id});
-  //var _index_dat=imob.data.indexof(w.id); console.log(_index_dat);
   imob.index >= 0 ? console.log("index = " + imob.index) : console.log("less zero");
   if(imob.data.length != 0){
     $('#form_2').hide();
   }
   temp_no_change(w);
-  /*
-  temp_store.name=w.name;
-  temp_store.job=w.job;
-  temp_store.birth_date=w.birth_date;
-  temp_store.gender=w.gender;
-  temp_store.checked=w.checked;*/
+  
 }
 
-var gender_change=e=>{
-  //console.log(e.target);
+let gender_change=e=>{
   temp_store.gender= e.target.value;
-//  console.log(temp_store.gender);
 }
 
-var set_data=e=>{
-//  console.log(e.target.value);
+let set_data=e=>{
   temp_store.birth_date=e.target.value;
 }
+let refresh=()=>{
+  //console.log(imob.is_change)
+  // if(imob.is_change==true){
+  //   alert("Все внесенные изменения будут потеряны!")
+  // }
+  location.reload();
+}
 
-
-var Uu = function(){
-  //show wm_list
-  var wm_list=imob.data.map(wm=>html`
+let Uu = function(){
+  let wm_list=imob.data.map(wm=>html`
     <div class="list" key=${wm.id} onclick=${()=>set_active(wm)}>
       <div>name: ${wm.name}  job: ${wm.job} </div>
    </div>`
  )
 
-  var reg_form1=imob.data.filter(wm=>wm.active===true).map(wm=>html`
+  let reg_form1=imob.data.filter(wm=>wm.active===true).map(wm=>html`
      <div>
        <form id="form_1" onsubmit=${handle_submit}>
-          <h5>Registration form:</h5>
+          <h3>Форма регистрации:</h3>
           <h6>
-          <label>name</label>
+          <label>ФИО</label>
           <input type="text" id="name" onchange=${handle_change_name} value=${wm.name} /><br />
-          <label>job</label>
+          <label>Должность</label>
           <select  id="job" onchange=${handle_change_job} value=${wm.job}>
-           <option value="programmer">Programmer</option>
-           <option value="security">Security</option>
-           <option value="contacter">Contacter</option>
+          <option value="Разработчик">Разработчик</option>
+          <option value="Аналитик">Аналитик</option>
+          <option value="Специалист техподдержки">Специалист техподдержки</option>
           </select>
           <div>
             <label>
-              Date of birth: <input type="date" name="calendar" onchange=${set_data} value=${wm.birth_date}/>
+             Дата рождения: <input type="date" name="calendar" onchange=${set_data} value=${wm.birth_date}/>
             </label>
           </div>
           <div class="gender">
-          gender:${'  '}
+          Пол:${'  '}
           <label>
-            w: <input onchange=${handle_check}
+            М: <input onchange=${handle_check}
                       name="gender"
                       value='w'
                       type="radio"
@@ -149,7 +145,7 @@ var Uu = function(){
                       onchange=${gender_change} />
           </label>
           <label>
-            m: <input onchange=${handle_check}
+            Ж: <input onchange=${handle_check}
                       name="gender"
                       value='m'
                       type="radio"
@@ -159,38 +155,38 @@ var Uu = function(){
           </div>
           <div>
           <label>
-            is empty:
+            Уволен:
             <input onchange=${handle_check} type="checkbox" checked=${wm.checked} />
           </label>
             </div>
           </h6>
-          <button type="button" onclick=${handle_submit}>add</button>
-          <button type="button" onclick=${()=>del_w(wm.id)}>del</button>
+          <button type="button" onclick=${handle_submit}>Добавить нового сотрудника</button>
+          <button type="button" onclick=${()=>del_w(wm.id)}>Удалить выбранного сотрудника</button>
        </form>
       </div>`)
 
-  var reg_form2=html`
+  let reg_form2=html`
      <div>
        <form id="form_2" onsubmit=${handle_submit}>
-          <h5>Registration form:</h5>
+          <h3>Форма регистрации:</h3>
           <h6>
-          <label>name</label>
+          <label>ФИО</label>
           <input type="text" id="name" placeholder="name" onchange=${handle_change_name} value=${temp_store.name} /><br />
-          <label>job</label>
+          <label>Должность</label>
           <select id="job" placeholder="job" onchange=${handle_change_job} value=${temp_store.job}>
-           <option value="programmer">Programmer</option>
-           <option value="security">Security</option>
-           <option value="contacter">Contacter</option>
+           <option value="Разработчик">Разработчик</option>
+           <option value="Аналитик">Аналитик</option>
+           <option value="Специалист техподдержки">Специалист техподдержки</option>
           </select>
           <div>
             <label>
-              Date of birth: <input type="date" name="calendar" onchange=${set_data} value=${temp_store.birth_date} />
+              Дата рождения: <input type="date" name="calendar" onchange=${set_data} value=${temp_store.birth_date} />
             </label>
           </div>
           <div class="gender">
           gender:${'  '}
           <label>
-            w: <input onchange=${handle_check}
+            Ж: <input onchange=${handle_check}
                       name="gender"
                       value='w'
                       type="radio"
@@ -198,7 +194,7 @@ var Uu = function(){
                       onchange=${gender_change} />
           </label>
           <label>
-            m: <input onchange=${handle_check}
+            М: <input onchange=${handle_check}
                       name="gender"
                       value='m'
                       type="radio"
@@ -208,12 +204,12 @@ var Uu = function(){
           </div>
           <div>
             <label>
-              is empty: <input onchange=${handle_check} type="checkbox" checked=${temp_store.checked} />
+              Уволен: <input onchange=${handle_check} type="checkbox" checked=${temp_store.checked} />
             </label>
           </div>
           </h6>
-          <button class="" onclick=${handle_submit}>add</button>
-          <button class="unactive" onclick=${clear_temp} disabled >del</button>
+          <button class="" onclick=${handle_submit}>Добавить нового сотрудника</button>
+          <button class="unactive" onclick=${clear_temp} disabled>Удалить выбранного сотрудника</button>
        </form>
       </div>`
 
@@ -225,15 +221,15 @@ return html`
   <div class="r_cont">
     <p>${reg_form1}</p>
     <p>${reg_form2}</p>
-    <button onclick=${imob.save_st}>save</button>
+    <button onclick=${imob.save_st}>Сохранить</button>
+    <button onclick=${refresh}>Обновить страницу</button>
     <button onclick=${()=>{
       clear_temp();
       imob.back();
-    }}>back</button>
-    <button onclick=${imob.clear_all}>clear_all</button>
-    <p>index : ${imob.index}</p>
+    }}>Вернуть</button>
+    <button onclick=${imob.clear_all}>Очистить</button>
   </div>`
 }
 
-
+/* <p>index : ${imob.index}</p> */
 export default observer(Uu);

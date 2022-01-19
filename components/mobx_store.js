@@ -40,7 +40,8 @@ var imob={
   clear_all: ()=>{
     local.clear();
     imob.data=[];
-  }
+  },
+  is_change: false
 }
 
 decorate(imob, {
@@ -50,7 +51,8 @@ decorate(imob, {
     del_w: action,
     to_local: action,
     save_st: action,
-    back: action
+    back: action,
+    is_change: observable
 //    clear_all: action
 })
 

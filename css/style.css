@@ -2,12 +2,20 @@
   margin: 0;
   padding: 0;
 }
+body{
+  font-size: 15px;
+}
+form{
+  margin: 8px;
+  padding: 5px;
+}
 input, button{
   color: lightgray;
   background-color: black;
   justify-content: center;
   margin-right: 5px;
   border: 0;
+  padding: 2px;
 }
 
 .unactive{
@@ -15,7 +23,7 @@ input, button{
 }
 label{
   color: black;
-
+  margin-bottom: 10px;
 }
 .header{
   height: 19px;
@@ -33,7 +41,8 @@ label{
 .l_cont{
   height: 1000px;
   margin: 0px;
-  width: 238px;
+  width: 50%;
+   /* 238px; */
   background-color: rgba(0,0,0,0.9)
 }
 .l_cont .list{
@@ -57,8 +66,8 @@ label{
 
 /*right area */
 .r_cont{
-  height: 1000px;
-  width: 238px;
+  height: 1100px;
+  width: 50%;
   position: absolute;
   top: 19px;
   bottom: 15px;
@@ -72,5 +81,6 @@ label{
 }
 #form_2{
   padding: 10px;
-  background: #F9F7F1;
+  background: white;
+   /* #F9F7F1; */
 }
