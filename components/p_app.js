@@ -112,7 +112,7 @@ let refresh=()=>{
 let Uu = function(){
   let wm_list=imob.data.map(wm=>html`
     <div class="list" key=${wm.id} onclick=${()=>set_active(wm)}>
-      <div>name: ${wm.name}  job: ${wm.job} </div>
+      <div>ФИО: ${wm.name}  Должность: ${wm.job} </div>
    </div>`
  )
 

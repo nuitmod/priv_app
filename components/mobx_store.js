@@ -28,9 +28,9 @@ var imob={
   back: ()=>{
     local.clear();
     imob.data= [
-      { name: 'Maud', job: 'security', active: false, birth_date: "2020-01-01",  gender: 'w', checked: false, id: 1},
-      { name: 'Ruth', job: 'programmer', active: false, birth_date: "2020-02-02", gender: 'w', checked: false, id: 2},
-      { name: 'Muit',job: 'contacter', active: false, birth_date: "2020-03-03", gender: 'w', checked: false, id: 3}
+      { name: 'Maud', job: 'Разработчик', active: false, birth_date: "2020-01-01",  gender: 'w', checked: false, id: 1},
+      { name: 'Ruth', job: 'Аналитик', active: false, birth_date: "2020-02-02", gender: 'w', checked: false, id: 2},
+      { name: 'Muit',job: 'Специалист техподдержки', active: false, birth_date: "2020-03-03", gender: 'w', checked: false, id: 3}
     ];
   //  imob.data.forEach(wm=>wm.active===true ? wm.active=false : null)
     imob.save_st();
