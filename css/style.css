@@ -39,10 +39,9 @@ label{
 }
 /*left aria*/
 .l_cont{
-  height: 1000px;
+  height: 1500px;
   margin: 0px;
   width: 50%;
-   /* 238px; */
   background-color: rgba(0,0,0,0.9)
 }
 .l_cont .list{
@@ -82,5 +81,4 @@ label{
 #form_2{
   padding: 10px;
   background: white;
-   /* #F9F7F1; */
 }
