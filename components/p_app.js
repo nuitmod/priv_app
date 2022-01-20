@@ -119,7 +119,7 @@ let Uu = function(){
   let reg_form1=imob.data.filter(wm=>wm.active===true).map(wm=>html`
      <div>
        <form id="form_1" onsubmit=${handle_submit}>
-          <h3>Форма регистрации:</h3>
+          <h3>Форма редактирования:</h3>
           <h6>
           <label>ФИО</label>
           <input type="text" id="name" onchange=${handle_change_name} value=${wm.name} /><br />
@@ -137,7 +137,7 @@ let Uu = function(){
           <div class="gender">
           Пол:${'  '}
           <label>
-            М: <input onchange=${handle_check}
+            Ж: <input onchange=${handle_check}
                       name="gender"
                       value='w'
                       type="radio"
@@ -145,7 +145,7 @@ let Uu = function(){
                       onchange=${gender_change} />
           </label>
           <label>
-            Ж: <input onchange=${handle_check}
+            М: <input onchange=${handle_check}
                       name="gender"
                       value='m'
                       type="radio"
@@ -168,7 +168,7 @@ let Uu = function(){
   let reg_form2=html`
      <div>
        <form id="form_2" onsubmit=${handle_submit}>
-          <h3>Форма регистрации:</h3>
+          <h3>Форма редактирования:</h3>
           <h6>
           <label>ФИО</label>
           <input type="text" id="name" placeholder="name" onchange=${handle_change_name} value=${temp_store.name} /><br />
@@ -222,7 +222,6 @@ return html`
     <p>${reg_form1}</p>
     <p>${reg_form2}</p>
     <button onclick=${imob.save_st}>Сохранить</button>
-    <button onclick=${refresh}>Обновить страницу</button>
     <button onclick=${()=>{
       clear_temp();
       imob.back();
@@ -231,5 +230,5 @@ return html`
   </div>`
 }
 
-/* <p>index : ${imob.index}</p> */
+/* <p>index : ${imob.index}</p> <button onclick=${refresh}>Обновить страницу</button> */
 export default observer(Uu);
