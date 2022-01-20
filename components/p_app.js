@@ -184,7 +184,7 @@ let Uu = function(){
             </label>
           </div>
           <div class="gender">
-          gender:${'  '}
+          Пол:${'  '}
           <label>
             Ж: <input onchange=${handle_check}
                       name="gender"
