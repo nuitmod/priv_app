@@ -10,11 +10,15 @@ form{
   padding: 5px;
   font-weight: bolder;
 }
+form h2{
+  margin: 10px;
+  text-decoration: underline;
+}
 input, button{
   color: lightgray;
   background-color: black;
   justify-content: center;
-  margin-right: 5px;
+  margin: 0 0 2px 5px;
   border: 0;
   padding: 2px;
 }
@@ -44,6 +48,11 @@ label{
   margin: 0px;
   width: 50%;
   background-color: rgba(0,0,0,0.9)
+}
+.l_cont h3{
+  text-align: center;
+  color: hsl(300, 20%, 96%);
+  margin-bottom: 10px;
 }
 .l_cont .list{
   color: #F9F7F1;
