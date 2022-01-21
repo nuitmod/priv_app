@@ -112,8 +112,7 @@ let Uu = function(){
   let reg_form1=imob.data.filter(wm=>wm.active===true).map(wm=>html`
      <div>
        <form id="form_1" onsubmit=${handle_submit}>
-          <h3>Форма редактирования:</h3>
-          <h6>
+          <h2>Форма редактирования:</h2>
           <label>ФИО</label>
           <input type="text" id="name" onchange=${handle_change_name} value=${wm.name} /><br />
           <label>Должность</label>
@@ -148,11 +147,9 @@ let Uu = function(){
           </div>
           <div>
           <label>
-            Уволен:
-            <input onchange=${handle_check} type="checkbox" checked=${wm.checked} />
+            Уволен: <input onchange=${handle_check} type="checkbox" checked=${wm.checked} />
           </label>
             </div>
-          </h6>
           <button type="button" onclick=${handle_submit}>Добавить нового сотрудника</button>
           <button type="button" onclick=${()=>del_w(wm.id)}>Удалить выбранного сотрудника</button>
        </form>
@@ -161,10 +158,9 @@ let Uu = function(){
   let reg_form2=html`
      <div>
        <form id="form_2" onsubmit=${handle_submit}>
-          <h3>Форма редактирования:</h3>
-          <h6>
+          <h2>Форма редактирования:</h2>        
           <label>ФИО</label>
-          <input type="text" id="name" placeholder="name" onchange=${handle_change_name} value=${temp_store.name} /><br />
+          <input type="text" id="name" placeholder="ФИО" onchange=${handle_change_name} value=${temp_store.name} /><br />
           <label>Должность</label>
           <select id="job" placeholder="job" onchange=${handle_change_job} value=${temp_store.job}>
            <option value="Разработчик">Разработчик</option>
@@ -199,8 +195,7 @@ let Uu = function(){
             <label>
               Уволен: <input onchange=${handle_check} type="checkbox" checked=${temp_store.checked} />
             </label>
-          </div>
-          </h6>
+          </div> 
           <button class="" onclick=${handle_submit}>Добавить нового сотрудника</button>
           <button class="unactive" onclick=${clear_temp} disabled>Удалить выбранного сотрудника</button>
        </form>
@@ -209,7 +204,7 @@ let Uu = function(){
 //all data
 return html`
   <div class="l_cont">
-    <h6>${wm_list}</h6>
+    <div>${wm_list}</div>
   </div>
   <div class="r_cont">
     <p>${reg_form1}</p>

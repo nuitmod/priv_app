@@ -16,16 +16,15 @@ let imob={
   index: null,
   ch_store: ()=>imob.inf="Ruth",
   data: items_array,
-  //Добавляем в LocalStorage
-  to_local: st=>{
+  to_local: st=>{ //Добавляем в LocalStorage
     local.setItem(key_store, JSON.stringify(st))
   },
-  save_st: ()=>{
+  save_st: ()=>{ //Сохраняем состояние
     let local_data=imob.data.map(i=>toJS(i));
     imob.to_local(local_data);
     imob.index = null;
   },
-  back: ()=>{
+  back: ()=>{ //Возвращаем исходный список сотрудников
     local.clear();
     imob.data= [
       { name: 'Maud', job: 'Разработчик', active: false, birth_date: "2020-01-01",  gender: 'w', checked: false, id: 1},
@@ -35,7 +34,7 @@ let imob={
     imob.save_st();
     $('#form_2').show();
   },
-  clear_all: ()=>{
+  clear_all: ()=>{ //Очистка хранилища
     local.clear();
     imob.data=[];
   },
