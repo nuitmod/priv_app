@@ -13,6 +13,7 @@ let __ = window._;
 $('#form_1').hide();
 imob.data.forEach(wm=>wm.active===true ? wm.active=false : null)
 
+//Временное хранилище данных
 let temp_store={
   name: '',
   job: '',
@@ -21,7 +22,7 @@ let temp_store={
   gender: 'w',
   checked: false
 }
-
+//Очистка временного хранилища
 let clear_temp=()=>{
   temp_store.name = ''
   temp_store.job = ''
@@ -29,11 +30,11 @@ let clear_temp=()=>{
   temp_store.gender= 'w'
   temp_store.checked=false
 }
-
+//Изменяем ФИО на значение из формы
 let handle_change_name=e=>{
   temp_store.name=e.target.value;
 }
-
+//Изменяем должность
 let handle_change_job=e=>{
   temp_store.job=e.target.value;
 }
@@ -46,12 +47,10 @@ let handle_check=e=>{
 let handle_submit=e=>{
   e.preventDefault();
   console.log(e);
-  temp_store.name !=''  && temp_store.job != '' ? add_w(temp_store) : alert("Fields must not be empty");
-//  $('#form_2').hide();
+  temp_store.name !=''  && temp_store.job != '' ? add_w(temp_store) : alert("Поля ФИО и Должность должны быть заполнены!");
 }
-
+//Добавляем сотрудника
 let add_w=wm=>{
-//  console.log("new temp_store " + wm);        //wm=new temp_store
   imob.id_del != 0 ? wm.id=Math.random() : wm.id=imob.id_del
   wm.id === 0 ? wm.id=Math.random() : null
   wm.active=false
@@ -61,9 +60,8 @@ let add_w=wm=>{
   wm.job = '';
   del_w(imob.id_del)
   imob.is_change=true;
-  //console.log(imob.is_change)
 }
-
+//Удаляем сотрудника
 let del_w=id=>{
   imob.data=imob.data.filter(wm=>{
     return wm.id != id
@@ -80,7 +78,7 @@ let temp_no_change=par=>{
   temp_store.gender=par.gender;
   temp_store.checked=par.checked;
 }
-
+//Отмечаем выбранный элемент
 let set_active=w=>{
   imob.data.forEach(wm=>wm.active===true ? wm.active=false : null)
   w.active=true;;
@@ -91,7 +89,6 @@ let set_active=w=>{
     $('#form_2').hide();
   }
   temp_no_change(w);
-  
 }
 
 let gender_change=e=>{
@@ -101,13 +98,9 @@ let gender_change=e=>{
 let set_data=e=>{
   temp_store.birth_date=e.target.value;
 }
-let refresh=()=>{
-  //console.log(imob.is_change)
-  // if(imob.is_change==true){
-  //   alert("Все внесенные изменения будут потеряны!")
-  // }
-  location.reload();
-}
+// let refresh=()=>{
+//   location.reload();
+// }
 
 let Uu = function(){
   let wm_list=imob.data.map(wm=>html`
