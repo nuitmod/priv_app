@@ -127,7 +127,7 @@ let Uu = function(){
             </label>
           </div>
           <div class="gender">
-          Пол:${'  '}
+          <label>Пол:</label>${'  '}
           <label>
             Ж: <input onchange=${handle_check}
                       name="gender"
@@ -173,7 +173,7 @@ let Uu = function(){
             </label>
           </div>
           <div class="gender">
-          Пол:${'  '}
+          <label>Пол:</label>${'  '}
           <label>
             Ж: <input onchange=${handle_check}
                       name="gender"
@@ -204,7 +204,7 @@ let Uu = function(){
 //all data
 return html`
   <div class="l_cont">
-    <h3>Список сотрудников:</h3>
+    <h2>Список сотрудников:</h2>
     <div>${wm_list}</div>
   </div>
   <div class="r_cont">

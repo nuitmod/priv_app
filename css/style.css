@@ -11,8 +11,9 @@ form{
   font-weight: bolder;
 }
 form h2{
-  margin: 10px;
+  margin-bottom: 15px;
   text-decoration: underline;
+  padding: 9px;
 }
 input, button{
   color: lightgray;
@@ -29,6 +30,7 @@ input, button{
 label{
   color: black;
   margin-bottom: 10px;
+  font-size: 15px;
 }
 .header{
   height: 19px;
@@ -49,7 +51,7 @@ label{
   width: 50%;
   background-color: rgba(0,0,0,0.9)
 }
-.l_cont h3{
+.l_cont h2{
   text-align: center;
   color: hsl(300, 20%, 96%);
   margin-bottom: 10px;
@@ -80,7 +82,7 @@ label{
   position: absolute;
   top: 19px;
   bottom: 15px;
-  right: 9px;
+  right: 0;
   background: white;
   border: 2px;
 }
